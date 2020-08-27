@@ -15,6 +15,10 @@ import 'amfe-flexible'
 import HmHeader from './components/HmHeader.vue'
 // 导入黑马logo
 import HmLogo from './components/HmLogo.vue'
+import axios from 'axios'
+Vue.prototype.$axios = axios
+// 给axios配置默认的baseURL， 基准地址
+axios.defaults.baseURL = 'http://localhost:3000'
 Vue.use(Vant)
 
 // Vue.use(Button)
