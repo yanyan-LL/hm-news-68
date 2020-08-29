@@ -42,11 +42,13 @@ export default {
         password: this.password
       })
       console.log(res.data)
-      const { statusCode, message } = res.data
+      const { statusCode, message, data } = res.data
       if (statusCode === 200) {
         // 在组件中必须通过this.$toast
         this.$toast.success(message)
         // 保存token
+        localStorage.setItem('token', data.token)
+        localStorage.setItem('userId', data.user.id)
         // 跳转到个人中心
         this.$router.push('/user')
       } else {
@@ -76,6 +78,8 @@ export default {
 <style lang="less" scoped>
 // 想要当前组件的的样式就在当前组件生效，需要给style添加scoped属性
 // scoped：作用域  当前组件的样式带了scoped, 这个样式只会在当前组件生效
+// scoped的原理：1.给当前组件的模板中所有的元素都添加一个特殊的属性  data-v-xxx
+//              2.给当前组件的样式中所有的选择器增加一个属性选择器 div[data-v-xxx] .tips[dtat-v-xxx]
 .tips {
   padding: 15px;
   font-size: 16px;

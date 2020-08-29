@@ -16,6 +16,9 @@ import HmHeader from './components/HmHeader.vue'
 // 导入黑马logo
 import HmLogo from './components/HmLogo.vue'
 import axios from 'axios'
+// 导入navitem
+import HmNavItem from './components/HmNavItem.vue'
+import moment from 'moment'
 Vue.prototype.$axios = axios
 // 给axios配置默认的baseURL， 基准地址
 axios.defaults.baseURL = 'http://localhost:3000'
@@ -25,6 +28,10 @@ Vue.use(Vant)
 // 全局注册
 Vue.component('hm-header', HmHeader)
 Vue.component('hm-logo', HmLogo)
+Vue.component('hm-navitem', HmNavItem)
+Vue.filter('time', input => {
+  return moment(input).format('YYYY-MM-DD')
+})
 
 Vue.config.productionTip = false
 
