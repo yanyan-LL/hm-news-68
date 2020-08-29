@@ -29,6 +29,12 @@
 
 <script>
 export default {
+  // 在页面一条转进来就把数据显示到页面上
+  created () {
+    const { username, password } = this.$route.params
+    this.username = username
+    this.password = password
+  },
   methods: {
     async onSubmit () {
       const res = await this.$axios.post('/login', {
@@ -67,7 +73,9 @@ export default {
 }
 </script>
 
-<style lang="less">
+<style lang="less" scoped>
+// 想要当前组件的的样式就在当前组件生效，需要给style添加scoped属性
+// scoped：作用域  当前组件的样式带了scoped, 这个样式只会在当前组件生效
 .tips {
   padding: 15px;
   font-size: 16px;

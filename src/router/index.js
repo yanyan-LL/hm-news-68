@@ -7,8 +7,9 @@ import Register from '../views/Register.vue'
 Vue.use(VueRouter)
 
 const routes = [
-  { path: '/login', component: Login },
-  { path: '/register', component: Register }
+  // 通过params传参需要给路由设置name名称  一般默认情况下我们都给路由起个name
+  { path: '/login', component: Login, name: 'login' },
+  { path: '/register', component: Register, name: 'register' }
 ]
 
 const router = new VueRouter({

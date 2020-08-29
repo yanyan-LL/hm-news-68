@@ -59,13 +59,23 @@ export default {
   },
   methods: {
     async register () {
-      // console.log(111)
       const res = await this.$axios.post('/register', this.user)
       // console.log(res)
       const { statusCode, message } = res.data
       if (statusCode === 200) {
         this.$toast.success(message)
-        this.$router.push('/login')
+        // 跳转页面的时候把账号跟密码带过去  第一种写法
+        // this.$router.push(`/login?username=${this.user.username}&password=${this.user.password}`)
+        // 第二种写法路由传参写法
+        // this.$router.push({
+        //   path: '/login',
+        //   query: this.user
+        // })
+        // 第三种写法 params传参  上面两种方法不安全，账号密码都显示在地址栏中
+        this.$router.push({
+          name: 'login',
+          params: this.user
+        })
       } else {
         this.$toast.fail(message)
       }
@@ -74,6 +84,13 @@ export default {
 }
 </script>
 
-<style>
-
+<style lang="less" scoped>
+.tips {
+  padding: 15px;
+  font-size: 16px;
+  text-align: right;
+  a {
+    color: red;
+  }
+}
 </style>
